@@ -18,7 +18,7 @@ connectDB();
 // Middleware for JSON parsing and CORS
 app.use(express.json());
 app.use(cors({
-  origin: process.env.FRONTEND_URL, // Replace with your frontend origin
+  origin: 'https://illuminate-melvin.netlify.app', // Replace with your frontend origin
   credentials: true
 }));
 app.use(cookieParser());
@@ -29,7 +29,7 @@ const server = http.createServer(app);
 // Create a Socket.IO server with CORS enabled
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL, // Allow the frontend to connect
+    origin: 'https://illuminate-melvin.netlify.app', // Allow the frontend to connect
     methods: ["GET", "POST"],
     credentials: true
   }
