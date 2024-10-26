@@ -16,12 +16,12 @@ require("dotenv").config();
 connectDB();
 
 // Middleware for JSON parsing and CORS
+app.use(cookieParser());
 app.use(express.json());
 app.use(cors({
   origin: 'https://illuminate-melvin.netlify.app', // Replace with your frontend origin
   credentials: true
 }));
-app.use(cookieParser());
 
 // Create an HTTP server
 const server = http.createServer(app);

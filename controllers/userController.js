@@ -36,18 +36,19 @@ const addUserDevice = async (req, res) => {
 const getUserDetails = async (req, res) => {
   try {
     // Get the token from cookies
-    const token = req.cookies.token;
+    // const token = req.cookies.token;
+    const tokenUserId = req.userId;
     
-    if (!token) {
+    if (!tokenUserId) {
       return res.status(401).json({ message: 'No token, authorization denied' });
     }
 
     // Verify the token and extract the user ID
-    const decoded = jwt.verify(token, process.env.JWT_TOKEN_SECRET);
-    const userId = decoded.id;
+    // const decoded = jwt.verify(token, process.env.JWT_TOKEN_SECRET);
+    // const userId = decoded.id;
 
     // Fetch the user details from the database based on the userId
-    const user = await User.findById(userId).select('-password'); // Exclude the password field
+    const user = await User.findById(tokenUserId).select('-password'); // Exclude the password field
 
     // If the user is not found, return a 404 status
     if (!user) {
