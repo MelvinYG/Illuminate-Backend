@@ -75,7 +75,8 @@ const signUp = async (req, res) => {
         const { password: userPassword, ...userInfo } = user.toObject(); // Exclude password
         res.cookie("token", token, {
             httpOnly: true,
-            // secure: true,  // Uncomment this if using HTTPS
+            secure: true,  // Uncomment this if using HTTPS
+            sameSite: 'None', // for cross domain cookie sending
             maxAge: age
         })
         .status(200)

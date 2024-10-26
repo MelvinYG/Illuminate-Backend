@@ -3,7 +3,7 @@ const { createUser, addUserDevice, getUserDetails } = require("../controllers/us
 const { verifyToken } = require("../middleware/verifyToken.js");
 const userRoute = express.Router();
 
-userRoute.get("/", getUserDetails);
+userRoute.get("/", verifyToken, getUserDetails);
 
 // Create a new user (No token required)
 userRoute.post("/", createUser);
